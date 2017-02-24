@@ -1,5 +1,6 @@
 <?php
 include 'connect.php';
+include 'functions.php';
 
 $license = $_POST['license'];
 $sql = "SELECT * FROM parking_info WHERE license_plate = '$license'";
@@ -58,16 +59,19 @@ if(!$row){
                   <td>หมวดจังหวัด</td><td><?php echo $row['provice']?></td>
               </tr>
               <tr>
-                <td>วันเวลาที่เข้า</td><td></td>
+                <td>วันเวลาที่เข้า</td><td><?php echo thai_date(strtotime($row['timetim']))?></td>
               </tr>
               <tr>
-                <td>วันเวลาที่ออก</td><td></td>
+                <td>วันเวลาที่ออก</td><td><?php echo thai_date(strtotime($row['timeout']))?></td>
+              </tr>
+              <?php
+                $hour = calHourParking($row['timetim'], $row['timeout'])
+              ?>
+              <tr>
+                <td>จำนวนชั่วโมงที่จอด</td><td><?php echo  $hour . ' ชั่วโมง';?></td>
               </tr>
               <tr>
-                <td>จำนวนชั่วโมงที่จอด</td><td></td>
-              </tr>
-              <tr>
-                  <td>จำนวนเงินค่าจอด</td><td></td>
+                  <td>จำนวนเงินค่าจอด</td><td><?php echo calFee($hour) . ' บาท'; ?></td>
               </tr>
 
             </table>
