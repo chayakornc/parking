@@ -3,14 +3,12 @@ include 'connect.php';
 include 'functions.php';
 
 $license = $_POST['license'];
-$sql = "SELECT * FROM parking_info WHERE license_plate = '$license'";
+$sql = "SELECT * FROM parking_info WHERE license_plate = '{$license}'";
 $stmt = $pdo->query($sql);
 $row = $stmt->fetch();
 if(!$row){
   die('ไม่มีข้อมูล');
 }
-// print_r($row);
-// die;
 ?>
 <!DOCTYPE html>
 <html lang="en">

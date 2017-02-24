@@ -1,17 +1,17 @@
 <?php
-$host = '128.199.236.139';
+$host = 'localhost';
 $db = 'parking';
 $user = 'root';
 $pass = 'xitgmLwmp';
 $charset = 'utf8';
 
-$baseUri = "http://{$_SERVER['HTTP_HOST']}/";
-if($baseUri == 'http://localhost/'){
-	$host = 'localhost';
-	$db = 'parking';
-	$user = 'root';
-	$pass = 'BEsfkHuyHc5PJsvF';
-}
+// $baseUri = "http://{$_SERVER['HTTP_HOST']}/";
+// if($baseUri == 'http://localhost/'){
+// 	$host = 'localhost';
+// 	$db = 'parking';
+// 	$user = 'root';
+// 	$pass = 'BEsfkHuyHc5PJsvF';
+// }
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
 $opt = [
