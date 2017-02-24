@@ -82,7 +82,7 @@ $hour = calHourParking($row['timetim'], $row['timeout']);
               <tr>
                 <td colspan="2" class="text-align:right;">
                   <?php
-                  $money = $recive;
+                  $money = $recive-$row['fee'];
                   if($money>=500){
       $sum2=$money/500;
       $sum2s=floor($sum2)*500;
