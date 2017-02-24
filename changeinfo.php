@@ -79,6 +79,51 @@ $hour = calHourParking($row['timetim'], $row['timeout']);
                   <td>จำนวนเงินที่รับ</td><td><?php echo number_format($recive, 2) . ' บาท'; ?></td>
               </tr>
 
+              <tr>
+                <td colspan="2" class="text-align:right;">
+                  <?php
+                  $money = $recive;
+                  if($money>=500){
+      $sum2=$money/500;
+      $sum2s=floor($sum2)*500;
+      $money=$money-$sum2s;
+        echo " 500.00 บาท จำนวน ".floor($sum2)." ฉบับ"."<br>";
+        }else  {
+    echo " 500.00 บาท จำนวน  0 ฉบับ"."<br>";
+  }if($money>=100){
+      $sum3=$money/100;
+      $sum3s=floor($sum3)*100;
+      $money=$money-$sum3s;
+      echo " 100.00 บาท จำนวน ".floor($sum3)." ฉบับ"."<br>";
+      }else  {
+          echo " 100.00 บาท จำนวน  0 ฉบับ"."<br>";
+  }if($money>=50){
+      $sum4=$money/50;
+      $sum4s=floor($sum4)*50;
+      $money=$money-$sum4s;
+      echo " 50.00 บาท จำนวน  ".floor($sum4)." ฉบับ"."<br>";
+  }else  {
+          echo " 50.00 บาท จำนวน  0 ฉบับ"."<br>";
+      
+  }if($money>=20){
+      $sum5=$money/20;
+      $sum5s=floor($sum5)*20;
+      $money=$money-$sum5s;
+      echo " 20.00 บาท จำนวน ".floor($sum5)." ฉบับ"."<br>";
+      }else  {
+          echo " 20.00 บาท จำนวน  0 ฉบับ"."<br>";
+  }if($money>=10){
+      $sum51=$money/10;
+      $sum51s=floor($sum51)*10;
+      $money=$money-$sum51s;
+      echo " 10.00 บาท จำนวน ".floor($sum51)." ฉบับ"."<br>";
+      }else  {
+          echo " 10.00 บาท จำนวน  0 ฉบับ"."<br>";
+      }
+                  ?>
+                </td>
+              </tr>
+
             </table>
 
           </div>
