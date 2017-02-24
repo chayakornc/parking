@@ -18,15 +18,19 @@
     <![endif]-->
 
     <link href="css/style.css" rel="stylesheet">
+<script language="JavaScript"  type="text/javascript" src="js/validate.js">
+
+</script>
+
   </head>
-  <body>
+  <body background="img/background.png">
     <div>
         <div class="container">
 
-          <form class="form-license">
+          <form  class="form-license" method="post" action="parkingfee.php">
             <h2 class="form-license-heading">กรอกหมายเลขทะเบียน</h2>
-            <input type="text" id="inputEmail" class="form-control" placeholder="" required>
-            <button class="btn btn-lg btn-primary btn-block" type="submit" style="margin-top:10px;">ค้นหา</button>
+            <input type="text" id="license" name="license" class="form-control" placeholder="" required>
+            <button class="btn btn-lg btn-primary btn-block" onclick=Validate()  type="submit" style="margin-top:10px;">ค้นหา</button>
           </form>
 
         </div> <!-- /container -->

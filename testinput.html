@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> New Document </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+
+
+
+
+<script language="JavaScript">
+
+function Validate(license) 
+{
+   var val = license;
+
+   if (!val.match(/^[ก-ฮ0-9]+$/)) 
+    {
+        alert('กรุณาตรวจสอบการกรอกข้อมูล');
+        return false;
+    }
+
+    return true;
+}
+</script>
+
+ </HEAD>
+
+ <BODY>
+
+<form >
+ <input id="license" >
+  <button onclick="Validate('')">Try it</button>
+
+  </form>
+ </BODY>
+</HTML>
