@@ -2,20 +2,14 @@
 include 'connect.php';
 include 'functions.php';
 
+$recive = $_POST['recive'];
 $license = $_POST['license'];
+
 $sql = "SELECT * FROM parking_info WHERE license_plate = '{$license}'";
 $stmt = $pdo->query($sql);
 $row = $stmt->fetch();
-if(!$row){
-  die('ไม่มีข้อมูล');
-}
 
 $hour = calHourParking($row['timetim'], $row['timeout']);
-$fee = calFee($hour);
-
-$sql = "UPDATE parking_info SET fee = $fee";
-$pdo->query($sql);
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,24 +32,30 @@ $pdo->query($sql);
 
     <link href="css/style.css" rel="stylesheet">
   </head>
-  <body background="img/background.png">
+  <body>
     <div>
         <div class="container">
 
-<!--           <form class="form-license-fee" method="post" action="search_action.php">
-            <h1 class="form-license-heading">ค่าที่จอดรถ</h1>
+<!--           <form class="form-license-fee">
+            <h1 class="form-license-heading">ทอนเงินค่าจอดรถ</h1>
             <h2 class="form-license-heading">หมายเลขทะเบียนรถ</h2>
             <h2 class="form-license-heading">หมวดจังหวัด</h2>
-      			<h2 class="form-license-heading">วันเวลาที่เข้า</h2>
-      			<h2 class="form-license-heading">วันเวลาที่ออก</h2>
-      			<h2 class="form-license-heading">จำนวนชั่วโมงที่จอด</h2><h2>บาท</h2>
-      			<h2 class="form-license-heading">จำนวนเงินค่าจอด</h2><h2>ชั่วโมง</h2>
-      			<h1 class="form-license-heading">รับเงิน</h1>
+      			<h2 class="form-license-heading">จำนวนชั่วโมงที่จอด</h2><h2>ชั่วโมง</h2>
+      			<h2 class="form-license-heading">จำนวนเงินค่าจอด</h2><h2>บาท</h2>
+      			<h2 class="form-license-heading">จำนวนเงินที่รับ</h2><h2>บาท</h2>
+      			<h2 class="form-license-heading">จำนวนเงินที่ทอน</h2><h2>บาท</h2>
+      			<h1 class="form-license-heading">จำนวนธนบัตรที่ต้องทอนเงิน</h1>
+      			<h2 class="form-license-heading">500.00 บาท จำนวน </h2><h2>ฉบับ</h2>
+      			<h2 class="form-license-heading">100.00 บาท จำนวน </h2><h2>ฉบับ</h2>
+      			<h2 class="form-license-heading">50.00 บาท จำนวน </h2><h2>ฉบับ</h2>
+      			<h2 class="form-license-heading">20.00 บาท จำนวน </h2><h2>ฉบับ</h2>
+      			<h2 class="form-license-heading">10.00 บาท จำนวน </h2><h2>ฉบับ</h2>
             <input type="text" id="inputEmail" class="form-control" placeholder="" required>
             <button class="btn btn-lg btn-primary btn-block" type="submit" style="margin-top:10px;">คำนวณเงินทอน</button>
           </form> -->
+
           <div class="content">
-            <h1 style="text-align: center;">ค่าที่จอดรถ</h1>
+            <h1 style="text-align: center;">ทอนเงินค่าจอดรถ</h1>
             <table class="table">
               <tr>
                   <td>หมายเลขทะเบียนรถ</td><td><?php echo $row['license_plate']?></td>
@@ -73,16 +73,14 @@ $pdo->query($sql);
                 <td>จำนวนชั่วโมงที่จอด</td><td><?php echo  $hour . ' ชั่วโมง';?></td>
               </tr>
               <tr>
-                  <td>จำนวนเงินค่าจอด</td><td><?php echo number_format($fee,2) . ' บาท'; ?></td>
+                  <td>จำนวนเงินค่าจอด</td><td><?php echo number_format($row['fee'],2) . ' บาท'; ?></td>
               </tr>
+              <tr>
+                  <td>จำนวนเงินที่รับ</td><td><?php echo number_format($recive, 2) . ' บาท'; ?></td>
+              </tr>
+
             </table>
 
-            <form class="form-license" method="post" action="changeinfo.php">
-              <h2 class="form-license-heading" style="text-align: center;">รับเงิน</h2>
-              <input type="text" id="recive" name="recive" class="form-control" placeholder="" required>
-              <input type="hidden" name="license" value="<?php echo $row['license_plate']?>" />
-              <button class="btn btn-lg btn-primary btn-block" type="submit" style="margin-top:10px;">คำนวนเงินทอน</button>
-            </form>
           </div>
 
         </div> <!-- /container -->
